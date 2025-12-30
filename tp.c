@@ -2,25 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
-
 #define MAX_ETUDIANTS 100
-#define MAX_NOM 50
-#define MAX_PRENOM 50
-#define MAX_DEPARTEMENT 50
-#define MAX_FILIERE 50
-#define MAX_REGION 50
-
-typedef struct {
-    char matricule[10];
-    char nom[MAX_NOM];
-    char prenom[MAX_PRENOM];
-    char date_naissance[10];
-    char sexe[10];
-    char departement[MAX_DEPARTEMENT];
-    char filiere[MAX_FILIERE];
-    char region[MAX_REGION];
-} Etudiant;
-
 typedef struct {
     Etudiant etudiants[MAX_ETUDIANTS];
     int nombre_etudiants;
