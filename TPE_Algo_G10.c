@@ -2,10 +2,10 @@
 #include<math.h>
 #include<string.h>
 				typedef struct{
-    char matricule[30];
+    char matricule[20];
     char nom[30];
     char prenom[30];
-    char date_naiss[30];
+    char date_naiss[10];
     char sexe[8];
     char departement[30];
     char filiere[30];
@@ -22,9 +22,9 @@
             printf("Entrer le matricule de l'etudiant %d: \n", i+1);
                     scanf("%s",s1[i].matricule);
             printf("Entrer le nom de l'etudiant %d: \n", i+1);
-                    scanf("%s",s1[i].nom);
+                    scanf(" %30[^\n]",s1[i].nom);
             printf("Entrer le prenom de l'etudiant %d: \n", i+1);
-                    scanf("%s",s1[i].prenom);
+                    scanf(" %30[^\n]",s1[i].prenom);
             printf("Entrer la date de naissance de l'etudiant %d (JJ/MM/AAAA): \n", i+1);
                     scanf("%s",s1[i].date_naiss);
             printf("Entrer le sexe de l'etudiant %d (M/F): \n", i+1);
