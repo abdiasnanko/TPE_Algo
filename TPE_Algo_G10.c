@@ -19,21 +19,21 @@
   G10 s1[lignes];
         for (i = 0; i < lignes; i++)
         {
-            printf("Entrer le matricule de l'etudiant %d: \n",i+1);
+            printf("Entrer le matricule de l'etudiant %d: \n", i+1);
                     scanf("%s",s1[i].matricule);
             printf("Entrer le nom de l'etudiant %d: \n", i+1);
                     scanf("%s",s1[i].nom);
-            printf("Entrer le prenom de l'etudiant %d: \n",i+1);
+            printf("Entrer le prenom de l'etudiant %d: \n", i+1);
                     scanf("%s",s1[i].prenom);
-            printf("Entrer la date de naissance de l'etudiant %d (JJ/MM/AAAA): \n",i+1);
+            printf("Entrer la date de naissance de l'etudiant %d (JJ/MM/AAAA): \n", i+1);
                     scanf("%s",s1[i].date_naiss);
-            printf("Entrer le sexe de l'etudiant %d (M/F): \n",i+1);
+            printf("Entrer le sexe de l'etudiant %d (M/F): \n", i+1);
                     scanf("%s",s1[i].sexe);
-            printf("Entrer le departement de l'etudiant %d: \n",i+1);
+            printf("Entrer le departement de l'etudiant %d: \n", i+1);
                     scanf("%s",s1[i].departement);
-            printf("Entrer la filiere de l'etudiant %d: \n",i+1);
+            printf("Entrer la filiere de l'etudiant %d: \n", i+1);
                     scanf("%s",s1[i].filiere);
-            printf("Entrer la region d'origine de l'etudiant %d: \n",i+1);
+            printf("Entrer la region d'origine de l'etudiant %d: \n", i+1);
                     scanf("%s",s1[i].region_origine);
             printf("\n");
         }
