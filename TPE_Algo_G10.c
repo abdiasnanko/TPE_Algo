@@ -1,8 +1,7 @@
 #include <stdio.h>
 #include<math.h>
 #include<string.h>
-
-  typedef struct{
+				typedef struct{
     char matricule[30];
     char nom[30];
     char prenom[30];
@@ -11,8 +10,8 @@
     char departement[30];
     char filiere[30];
     char region_origine[30];
-                }G10;
-  int main() {
+											}G10;
+	int main() {
     int i;
     int lignes;
             printf("combien d'etudiants voulez vous enregistrer ? \n");
@@ -39,10 +38,11 @@
             printf("\n");
         }
             printf("\n Liste des etudiants inscrits: \n");
-            printf("Num.\t\tMatricule\t\tNoms\t\tPrenoms\t\tdate_Naiss.\t\tSexe\t\tDepartement\t\tFiliere\t\tRegion D'origine\n");
+            printf("%-05s %-15s %-15s %-15s %-15s %-15s %-15s %-15s %-15s \n", "Num.", "Matricule",  "Noms",  "Prenoms",  "date_Naiss.",  "Sexe",  "Departement",  "Filiere",  "Region D'origine");
+						printf("\n");
         for ( i = 0; i < lignes; i++)
         {
-            printf("%d\t\t%s\t\t%s\t\t%s\t\t%s\t\t%s\t\t%s\t\t%s\t\t%s\n", i+1, s1[i].matricule, s1[i].nom, s1[i].prenom, s1[i].date_naiss, s1[i].sexe, s1[i].departement, s1[i].filiere, s1[i].region_origine);
+            printf("%-05d %-15s %-15s %-15s %-15s %-15s %-15s %-15s %-15s\n", i+1, s1[i].matricule, s1[i].nom, s1[i].prenom, s1[i].date_naiss, s1[i].sexe, s1[i].departement, s1[i].filiere, s1[i].region_origine);
         }
-    return 0;
+  return 0;
 }
