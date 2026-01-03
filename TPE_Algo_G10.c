@@ -2,7 +2,7 @@
 #include<math.h>
 #include<string.h>
 				typedef struct{
-    char matricule[20];
+    char matricule[25];
     char nom[30];
     char prenom[30];
     char date_naiss[15];
