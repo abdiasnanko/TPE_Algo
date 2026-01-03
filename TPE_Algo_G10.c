@@ -5,7 +5,7 @@
     char matricule[20];
     char nom[30];
     char prenom[30];
-    char date_naiss[10];
+    char date_naiss[15];
     char sexe[8];
     char departement[30];
     char filiere[30];
