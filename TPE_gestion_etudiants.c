@@ -8,10 +8,11 @@ typedef struct {
     int matricule;
     char nom[30];
     char prenom[30];
-    int age;
+    int date_naissance[20];
     char sexe[10];
+    char departement[30];
     char filiere[30];
-    char region[30];
+    char region_origine[30];
 } Etudiant;
 
 Etudiant etudiants[MAX];
