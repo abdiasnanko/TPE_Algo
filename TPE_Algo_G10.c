@@ -1,13 +1,7 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<math.h>
-
-/*typedef struct {
-    int jour;
-    int mois;
-    int annee;
-} date;*/
-//date* naissance;
+#include<string.h>
 
 typedef struct
 {
@@ -21,11 +15,8 @@ typedef struct
     char region_origine[30];
 } G10;
 G10* Gestion; // Revoir aussi les pointeurs !
-
-  int j=0;
-  int lignes=0;
-  int i;
-  int confirmation;
+  char mat[25], nomrecherche[30];
+  int confirmation,j=0,lignes,i,d=0,m,trouve,anneeactuelle,anneenaissance,age;
 
 void enregistrer(){
       printf("\n Entrer le matricule de l'etudiant %d: \n", i+1);
@@ -49,28 +40,26 @@ void enregistrer(){
       printf("Etudiant enregistre avec succes !\n");
 }
 void afficher(){
-		if (j==0)
-		{
-      printf("AUCUN ETUDIANT ENREGISTRE ! \n");
-			printf("\n");
-      return;
+		if (j==0){
+            printf("AUCUN ETUDIANT ENREGISTRE ! \n");
+	        printf("\n");
+            return;
 		}
-      printf("\n Liste des etudiants inscrits: \n");
-      printf("%-05s %-15s %-15s %-15s %-15s %-15s %-15s %-15s %-15s \n", "Num.", "Matricule",  "Noms",  "Prenoms",  "date_Naiss.",  "Sexe",  "Departement",  "Filiere",  "Region D'origine");
-			printf("\n");
+        printf("\n Liste des etudiants inscrits: \n");
+        printf("%-05s %-15s %-15s %-15s %-15s %-15s %-15s %-15s %-15s \n", "Num.", "Matricule",  "Noms",  "Prenoms",  "date_Naiss.",  "Sexe",  "Departement",  "Filiere",  "Region D'origine");
+	    printf("\n");
 		for ( i = 0; i < j; i++)
 		{
       printf("%-05d %-15s %-15s %-15s %-15s %-15s %-15s %-15s %-15s\n", i+1, Gestion[i].matricule, Gestion[i].nom, Gestion[i].prenom, Gestion[i].date_naiss, Gestion[i].sexe, Gestion[i].departement, Gestion[i].filiere, Gestion[i].region_origine);
 
-			//printf("\n");
 		}
 }
 void supprimer(){
-    char mat[25]; int trouve = 0;
+
     printf("Entrer le matricule de l'etudiant a supprimer : ");
     scanf("%s", &mat);
 
-    for ( int i= 0; i < j; i++) {
+    for (i= 0; i < j; i++) {
         if (strcmp(Gestion[i].matricule, mat)==0) {
             trouve=1;
             for (int n = i; n < j - 1; n++) {
@@ -84,15 +73,15 @@ void supprimer(){
     if (trouve){
         printf("Etudiant supprimer avec succes.\n");
     } else{
-        printf("\nmatricule non trouve: suppression impossible");
+        printf("\nMatricule non trouve: suppression impossible\n");
     } 
 }  
 void modifier(){
-        char mat[25]; int trouve = 0;
+    
     printf("Entrer le matricule de l/etudiant a modifier : ");
     scanf("%s", &mat);
 
-    for (int i = 0; i < j; i++) {
+    for (i = 0; i < j; i++) {
         if (strcmp(Gestion[i].matricule, mat)==0) {
             trouve=1;
             printf("Entrer les nouvelles informations de l/etudiant\n");
@@ -117,37 +106,34 @@ void modifier(){
         }
     }
     if(trouve){
-        printf("information modifiees avec succes.\n");
+        printf("Information modifiees avec succes.\n");
     } else{
-        printf("\nmatricule non trouve: modification impossible");
+        printf("\nMatricule non trouve: modification impossible");
 
     }
 }
-/*void calculeage(){
-    char jouractuel, moisactuel, anneeactuelle, age, trouve; char mat[25];
-    printf("entrer la date actuelle(JJ/MM/AAAA):\n");
-    scanf("%d %d %d", &jouractuel,&moisactuel,&anneeactuelle);
-    printf("entrer le matricule de l/etudiant a calculer son age\n");
+void calculeage(){
+
+    printf("entrer l'annne de naissance dudit etudiant:\n");
+    scanf("%d",&anneenaissance);
+    printf("entrer l'annne actuelle:\n");
+    scanf("%d",&anneeactuelle);
+    printf("entrer le matricule de l'etudiant a calculer son age\n");
     scanf("%s", &mat);
-    for (int i=0; i<j; i++){
+    for (i=0; i<j; i++){
         if(strcmp(Gestion[i].matricule, mat)==0){
             trouve=1;
-            age=anneeactuelle- Gestion[i].date_naiss;
-            if(moisactuel<Gestion[i].date.mois || (moisactuel==Gestion[i].date.mois && jouractuel<Gestion[i].date.jour)){
-                age--;
-            }
-            printf("Etudiant: %s %s",Gestion[i].nom, Gestion[i].prenom);
-            printf("Age : %d ans", age);
-            break;
+            age=anneeactuelle-anneenaissance;
         }
-    } 
-    if(!trouve){
-        printf("\nmatricule non trouve: calcule de l/age impossible");
+            printf("L'age de cet etudiant est : %d ans\n", age);
     }
-}*/
+    if(!trouve){
+        printf("\nMatricule non trouve: calcule de l'age impossible");
+    }
+}
 void trialphabetique(){
         G10 temp;
-    for (int i = 0; i < j - 1; i++) {
+    for (i = 0; i < j - 1; i++) {
         for ( int n = i + 1; n < j; n++) {
             if (strcmp(Gestion[i].nom, Gestion[n].nom) > 0 || (strcmp(Gestion[i].nom, Gestion[n].nom) == 0 && strcmp(Gestion[i].prenom, Gestion[n].prenom) > 0 )) {
                 temp = Gestion[i];
@@ -156,20 +142,28 @@ void trialphabetique(){
             }
         }
     }
-    printf("liste des etudiants tries par ordre alphabetique :\n");
-    for ( int i=0; i<j; i++) {
-        printf("%s-%s %s %s %s %s %s %s\n",Gestion[i].matricule,Gestion[i].nom,Gestion[i].prenom,Gestion[i].date_naiss,Gestion[i].sexe,Gestion[i].departement,Gestion[i].filiere,Gestion[i].region_origine);
+    printf("Liste des etudiants tries par ordre alphabetique :\n");
+    printf("%-05s %-15s %-15s %-15s %-15s %-15s %-15s %-15s %-15s \n", "Num.", "Matricule",  "Noms",  "Prenoms",  "date_Naiss.",  "Sexe",  "Departement",  "Filiere",  "Region D'origine");
+	printf("\n");
+	for ( i = 0; i < j; i++)
+    {
+        printf("%-05d %-15s %-15s %-15s %-15s %-15s %-15s %-15s %-15s\n", i+1, Gestion[i].matricule, Gestion[i].nom, Gestion[i].prenom, Gestion[i].date_naiss, Gestion[i].sexe, Gestion[i].departement, Gestion[i].filiere, Gestion[i].region_origine);
+
     }
 }
 void rechercheparmatricule(){
-    char mat[25]; int trouve;
+
     printf("entrer le matricule de l'etudiant que vous voulez rechercher\n");
     scanf("%s", &mat);
-    for(int i = 0; i < j; i++) {
+    for(i = 0; i < j; i++) {
             if (strcmp(Gestion[i].matricule, mat) == 0) {
                 trouve = 1;
                 printf("\nEtudiant trouve :\n");
-                printf("%s-%s %s %s %s %s %s %s\n",Gestion[i].matricule,Gestion[i].nom,Gestion[i].prenom,Gestion[i].date_naiss,Gestion[i].sexe,Gestion[i].departement,Gestion[i].filiere,Gestion[i].region_origine);
+                printf("%-05s %-15s %-15s %-15s %-15s %-15s %-15s %-15s %-15s \n", "Num.", "Matricule",  "Noms",  "Prenoms",  "date_Naiss.",  "Sexe",  "Departement",  "Filiere",  "Region D'origine");
+			    printf("\n");
+                for ( i = 0; i < j; i++){
+                    printf("%-05d %-15s %-15s %-15s %-15s %-15s %-15s %-15s %-15s\n", i+1, Gestion[i].matricule, Gestion[i].nom, Gestion[i].prenom, Gestion[i].date_naiss, Gestion[i].sexe, Gestion[i].departement, Gestion[i].filiere, Gestion[i].region_origine);
+                }
                 break;
            }
     }
@@ -179,7 +173,7 @@ void rechercheparmatricule(){
 }  
 void triparFiliere(){
     G10 temp;
-    for (int i = 0; i < j - 1; i++) {
+    for (i = 0; i < j - 1; i++) {
         for ( int n = i + 1; n < j; n++) {
             if (strcmp(Gestion[i].filiere, Gestion[n].filiere) > 0 || (strcmp(Gestion[i].filiere, Gestion[n].filiere) == 0 && strcmp(Gestion[i].nom, Gestion[n].nom) > 0) || (strcmp(Gestion[i].filiere, Gestion[n].filiere) == 0 && strcmp(Gestion[i].nom, Gestion[n].nom) == 0 && strcmp(Gestion[i].prenom, Gestion[n].prenom) > 0)) {
                 temp = Gestion[i];
@@ -189,10 +183,47 @@ void triparFiliere(){
        }
     }
     printf("\nListe des etudiants tries par filiere :\n");
-    for(int i=0; i<j; i++) {
-        printf("%s-%s %s %s %s %s %s %s\n",Gestion[i].matricule,Gestion[i].nom,Gestion[i].prenom,Gestion[i].date_naiss,Gestion[i].sexe,Gestion[i].departement,Gestion[i].filiere,Gestion[i].region_origine);
+    printf("%-05s %-15s %-15s %-15s %-15s %-15s %-15s %-15s %-15s \n", "Num.", "Matricule",  "Noms",  "Prenoms",  "date_Naiss.",  "Sexe",  "Departement",  "Filiere",  "Region D'origine");
+	printf("\n");
+    for ( i = 0; i < j; i++){
+        printf("%-05d %-15s %-15s %-15s %-15s %-15s %-15s %-15s %-15s\n", i+1, Gestion[i].matricule, Gestion[i].nom, Gestion[i].prenom, Gestion[i].date_naiss, Gestion[i].sexe, Gestion[i].departement, Gestion[i].filiere, Gestion[i].region_origine);
     }
 }
+void rechercheDichotomique(){
+    G10 temp; int f=j-1;
+    for (i = 0; i < j - 1; i++) {
+        for ( int n = i + 1; n < j; n++) {
+            if (strcmp(Gestion[i].nom, Gestion[n].nom) > 0){
+                temp = Gestion[i];
+                Gestion[i] = Gestion[n];
+                Gestion[n] = temp;
+            }
+        } 
+    }
+    printf("entrer le nom de l'etudiant que vous voulez rechercher:\n");
+    scanf("%s", &nomrecherche);
+    while(d<=f){
+        m=(d+f)/2;
+        if(strcmp(Gestion[m].nom,nomrecherche)==0){
+            trouve=1;
+            printf("\nEtudiant trouve\n");
+            printf("%-05s %-15s %-15s %-15s %-15s %-15s %-15s %-15s %-15s \n", "Num.", "Matricule",  "Noms",  "Prenoms",  "date_Naiss.",  "Sexe",  "Departement",  "Filiere",  "Region D'origine");
+	        printf("\n");
+            for ( i = 0; i < j; i++){
+                printf("%-05d %-15s %-15s %-15s %-15s %-15s %-15s %-15s %-15s\n", i+1, Gestion[i].matricule, Gestion[i].nom, Gestion[i].prenom, Gestion[i].date_naiss, Gestion[i].sexe, Gestion[i].departement, Gestion[i].filiere, Gestion[i].region_origine);
+            }
+            break;
+        } else if(strcmp(Gestion[m].nom,nomrecherche)>0){
+                f=m-1;
+            } else {
+                d=m+1;
+            }
+        }
+        if(!trouve){
+            printf("\nNom non trouve\n");
+        }
+} 
+
   int main(){
 
   int choix;
@@ -200,7 +231,6 @@ void triparFiliere(){
 continuation:
 		printf("\n MENU DE GESTION \n");
 		printf("%s\n%s\n%s\n%s\n%s\n%s\n%s\n%s\n%s\n", "1. Enregistrer", "2. Modifier", "3. Recherher (matricule)" , "4. Supprimer", "5. Trier (ordre Alphabetique)", "6. Rechercher (Dichotomie)", "7. Calculer age etudiant", "8. Trier par Filiere", "9. Afficher la liste des etudiants");
-		//printf("\n");
 		printf("0. Quitter le programme \n");
       printf("Choisir une option [0-9]: \n");
 		printf("Entrez votre choix \n");
@@ -236,10 +266,10 @@ continuation:
 					trialphabetique();
 					break;
 		case 6:
-					printf("Hello 6");
+					rechercheDichotomique();
 					break;
 		case 7:
-					printf("hello 7");
+					calculeage();
 					break;
 		case 8:
 					triparFiliere();
