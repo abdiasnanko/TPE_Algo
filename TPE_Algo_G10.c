@@ -78,13 +78,13 @@ void supprimer(){
 }  
 void modifier(){
     
-    printf("Entrer le matricule de l/etudiant a modifier : ");
+    printf("Entrer le matricule de l'etudiant a modifier : ");
     scanf("%s", &mat);
 
     for (i = 0; i < j; i++) {
         if (strcmp(Gestion[i].matricule, mat)==0) {
             trouve=1;
-            printf("Entrer les nouvelles informations de l/etudiant\n");
+            printf("Entrer les nouvelles informations de l'etudiant\n");
 
             printf("Nouveau nom : ");
             scanf("%s", Gestion[i].nom);
@@ -223,15 +223,29 @@ void rechercheDichotomique(){
             printf("\nNom non trouve\n");
         }
 } 
+void affichertitre(const char *titre){
+    int longueur=strlen(titre);
+    int largeur=longueur+4;
+        printf("+--");
+    for(int i=0;i<largeur;i++)
+        printf("#");
+        printf("-+\n");
+        printf("|  \033[1;4;34m%s\033[0m  |\n", titre);
+        printf("--+");
+        for(int i=0;i<largeur;i++)
+        printf("#");
+        printf("-+\n");
+}
 
   int main(){
+    affichertitre("MENU DE GESTION");
 
   int choix;
 	do {
 continuation:
-		printf("\n MENU DE GESTION \n");
-		printf("%s\n%s\n%s\n%s\n%s\n%s\n%s\n%s\n%s\n", "1. Enregistrer", "2. Modifier", "3. Recherher (matricule)" , "4. Supprimer", "5. Trier (ordre Alphabetique)", "6. Rechercher (Dichotomie)", "7. Calculer age etudiant", "8. Trier par Filiere", "9. Afficher la liste des etudiants");
-		printf("0. Quitter le programme \n");
+        printf("\n");
+		printf("%s\n%s\n%s\n%s\n%s\n%s\n%s\n%s\n%s\n", "\033[34m1. Enregistrer\033[0m", "\033[32m2. Modifier\033[0m", "\033[33m3. Recherher (matricule)\033[0m" , "\033[31m4. Supprimer\033[0m", "\033[35m5. Trier (ordre Alphabetique)\033[0m", "\033[38;5;94m6. Rechercher (Dichotomie)\033[0m", "7. Calculer age etudiant", "\033[30m8. Trier par Filiere\033[0m", "\033[38;5;208m9. Afficher la liste des etudiants\033[0m");
+		printf("\033[31m0. Quitter le programme\033[0m\n");
       printf("Choisir une option [0-9]: \n");
 		printf("Entrez votre choix \n");
 			scanf("%d", &choix);
