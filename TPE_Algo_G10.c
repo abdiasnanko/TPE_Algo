@@ -13,8 +13,8 @@ typedef struct
     char departement[30];
     char filiere[30];
     char region_origine[30];
-} G10;
-G10* Gestion; // Revoir aussi les pointeurs !
+} Gestion_etudiants;
+Gestion_etudiants* Gestion; // Revoir aussi les pointeurs !
   char mat[25], nomrecherche[30];
   int confirmation,j=0,lignes,i,d=0,m,trouve,anneeactuelle,anneenaissance,age;
  
@@ -136,7 +136,7 @@ void calculeage(){
     }
 }
 void trialphabetique(){
-        G10 temp;
+        Gestion_etudiants temp;
     for (i = 0; i < j - 1; i++) {
         for ( int n = i + 1; n < j; n++) {
             if (strcmp(Gestion[i].nom, Gestion[n].nom) > 0 || (strcmp(Gestion[i].nom, Gestion[n].nom) == 0 && strcmp(Gestion[i].prenom, Gestion[n].prenom) > 0 )) {
@@ -166,7 +166,7 @@ void rechercheparmatricule(){
     }
 }  
 void triparFiliere(){
-    G10 temp;
+    Gestion_etudiants temp;
     for (i = 0; i < j - 1; i++) {
         for ( int n = i + 1; n < j; n++) {
             if (strcmp(Gestion[i].filiere, Gestion[n].filiere) > 0 || (strcmp(Gestion[i].filiere, Gestion[n].filiere) == 0 && strcmp(Gestion[i].nom, Gestion[n].nom) > 0) || (strcmp(Gestion[i].filiere, Gestion[n].filiere) == 0 && strcmp(Gestion[i].nom, Gestion[n].nom) == 0 && strcmp(Gestion[i].prenom, Gestion[n].prenom) > 0)) {
@@ -180,7 +180,7 @@ void triparFiliere(){
     liste();
 }
 void rechercheDichotomique(){
-    G10 temp; int f=j-1;
+    Gestion_etudiants temp; int f=j-1;
     for (i = 0; i < j - 1; i++) {
         for ( int n = i + 1; n < j; n++) {
             if (strcmp(Gestion[i].nom, Gestion[n].nom) > 0){
@@ -241,7 +241,7 @@ continuation:
 	case 1:
 				printf("Combien d'etudiants voulez vous enregistrer ?: ");
 					scanf("%d", &lignes);
-					Gestion=(G10*)malloc(lignes * sizeof(G10)); // Comprendre davantage l'allocation dynamique !
+					Gestion=(Gestion_etudiants*)malloc(lignes * sizeof(Gestion_etudiants)); // Comprendre davantage l'allocation dynamique !
 							if (Gestion==0) {
 				printf("Vous ne pouvez pas enregistrer 0 etudiants !");
 							return 1; 
