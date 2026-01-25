@@ -17,6 +17,16 @@ typedef struct
 G10* Gestion; // Revoir aussi les pointeurs !
   char mat[25], nomrecherche[30];
   int confirmation,j=0,lignes,i,d=0,m,trouve,anneeactuelle,anneenaissance,age;
+ 
+void liste(){
+    printf("%-05s %-15s %-15s %-15s %-15s %-15s %-15s %-15s %-15s \n", "Num.", "Matricule",  "Noms",  "Prenoms",  "date_Naiss.",  "Sexe",  "Departement",  "Filiere",  "Region D'origine");
+	    printf("\n");
+		for ( i = 0; i < j; i++)
+		{
+      printf("%-05d %-15s %-15s %-15s %-15s %-15s %-15s %-15s %-15s\n", i+1, Gestion[i].matricule, Gestion[i].nom, Gestion[i].prenom, Gestion[i].date_naiss, Gestion[i].sexe, Gestion[i].departement, Gestion[i].filiere, Gestion[i].region_origine);
+
+		}
+}  
 
 void enregistrer(){
       printf("\n Entrer le matricule de l'etudiant %d: \n", i+1);
@@ -46,13 +56,7 @@ void afficher(){
             return;
 		}
         printf("\n Liste des etudiants inscrits: \n");
-        printf("%-05s %-15s %-15s %-15s %-15s %-15s %-15s %-15s %-15s \n", "Num.", "Matricule",  "Noms",  "Prenoms",  "date_Naiss.",  "Sexe",  "Departement",  "Filiere",  "Region D'origine");
-	    printf("\n");
-		for ( i = 0; i < j; i++)
-		{
-      printf("%-05d %-15s %-15s %-15s %-15s %-15s %-15s %-15s %-15s\n", i+1, Gestion[i].matricule, Gestion[i].nom, Gestion[i].prenom, Gestion[i].date_naiss, Gestion[i].sexe, Gestion[i].departement, Gestion[i].filiere, Gestion[i].region_origine);
-
-		}
+        liste();
 }
 void supprimer(){
 
@@ -143,13 +147,7 @@ void trialphabetique(){
         }
     }
     printf("Liste des etudiants tries par ordre alphabetique :\n");
-    printf("%-05s %-15s %-15s %-15s %-15s %-15s %-15s %-15s %-15s \n", "Num.", "Matricule",  "Noms",  "Prenoms",  "date_Naiss.",  "Sexe",  "Departement",  "Filiere",  "Region D'origine");
-	printf("\n");
-	for ( i = 0; i < j; i++)
-    {
-        printf("%-05d %-15s %-15s %-15s %-15s %-15s %-15s %-15s %-15s\n", i+1, Gestion[i].matricule, Gestion[i].nom, Gestion[i].prenom, Gestion[i].date_naiss, Gestion[i].sexe, Gestion[i].departement, Gestion[i].filiere, Gestion[i].region_origine);
-
-    }
+    liste();
 }
 void rechercheparmatricule(){
 
@@ -159,11 +157,7 @@ void rechercheparmatricule(){
             if (strcmp(Gestion[i].matricule, mat) == 0) {
                 trouve = 1;
                 printf("\nEtudiant trouve :\n");
-                printf("%-05s %-15s %-15s %-15s %-15s %-15s %-15s %-15s %-15s \n", "Num.", "Matricule",  "Noms",  "Prenoms",  "date_Naiss.",  "Sexe",  "Departement",  "Filiere",  "Region D'origine");
-			    printf("\n");
-                for ( i = 0; i < j; i++){
-                    printf("%-05d %-15s %-15s %-15s %-15s %-15s %-15s %-15s %-15s\n", i+1, Gestion[i].matricule, Gestion[i].nom, Gestion[i].prenom, Gestion[i].date_naiss, Gestion[i].sexe, Gestion[i].departement, Gestion[i].filiere, Gestion[i].region_origine);
-                }
+                liste();
                 break;
            }
     }
@@ -183,11 +177,7 @@ void triparFiliere(){
        }
     }
     printf("\nListe des etudiants tries par filiere :\n");
-    printf("%-05s %-15s %-15s %-15s %-15s %-15s %-15s %-15s %-15s \n", "Num.", "Matricule",  "Noms",  "Prenoms",  "date_Naiss.",  "Sexe",  "Departement",  "Filiere",  "Region D'origine");
-	printf("\n");
-    for ( i = 0; i < j; i++){
-        printf("%-05d %-15s %-15s %-15s %-15s %-15s %-15s %-15s %-15s\n", i+1, Gestion[i].matricule, Gestion[i].nom, Gestion[i].prenom, Gestion[i].date_naiss, Gestion[i].sexe, Gestion[i].departement, Gestion[i].filiere, Gestion[i].region_origine);
-    }
+    liste();
 }
 void rechercheDichotomique(){
     G10 temp; int f=j-1;
@@ -207,11 +197,7 @@ void rechercheDichotomique(){
         if(strcmp(Gestion[m].nom,nomrecherche)==0){
             trouve=1;
             printf("\nEtudiant trouve\n");
-            printf("%-05s %-15s %-15s %-15s %-15s %-15s %-15s %-15s %-15s \n", "Num.", "Matricule",  "Noms",  "Prenoms",  "date_Naiss.",  "Sexe",  "Departement",  "Filiere",  "Region D'origine");
-	        printf("\n");
-            for ( i = 0; i < j; i++){
-                printf("%-05d %-15s %-15s %-15s %-15s %-15s %-15s %-15s %-15s\n", i+1, Gestion[i].matricule, Gestion[i].nom, Gestion[i].prenom, Gestion[i].date_naiss, Gestion[i].sexe, Gestion[i].departement, Gestion[i].filiere, Gestion[i].region_origine);
-            }
+            liste();
             break;
         } else if(strcmp(Gestion[m].nom,nomrecherche)>0){
                 f=m-1;
